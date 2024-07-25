@@ -1,0 +1,22 @@
+{
+    "fieldList": [
+        "Theme",
+        "Sub-theme",
+        "Reason",
+        "Language",
+        "Source",
+        "Rating",
+        "Time Period",
+        "Customer ID"
+    ],
+    "conditionList": [
+        "Equals",
+        "Does not equal",
+        "Like",
+        "Not like",
+        "Is Empty",
+        "Is",
+        "Is not"
+    ],
+    ""
+}

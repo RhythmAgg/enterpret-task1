@@ -5,7 +5,7 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 const CloseButton = () => {
   return (
-    <div className='close-button rounded' style={{height: '24px', width: '24px', backgroundColor: '#4338CA'}}>
+    <div className='text-center close-button rounded' style={{height: '24px', width: '24px', backgroundColor: '#4338CA'}}>
         <FontAwesomeIcon icon={faXmark} style={{color: 'white'}} />
     </div>
   )
