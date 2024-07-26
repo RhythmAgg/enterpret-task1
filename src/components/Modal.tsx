@@ -4,11 +4,15 @@ import RuleGroup from './RuleGroup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faL, faPlus } from '@fortawesome/free-solid-svg-icons';
 import {v4 as uuid} from 'uuid'
-import { ModalProps, RuleGroupElement } from './types';
+import { ModalProps, RuleGroupElement } from '../types';
 
 
 const Modal: FC<ModalProps> = ({ show, onClose }) => {
   const [ruleGroups, setRuleGroups] = useState<RuleGroupElement[]>([])
+
+  const removeRuleGroup = (ruleGroupId: string) => {
+    setRuleGroups(ruleGroups.filter(ele => ele.id != ruleGroupId))
+  }
 
   const addNewGroup = () => {
     const id = uuid()
@@ -44,7 +48,7 @@ const Modal: FC<ModalProps> = ({ show, onClose }) => {
         </div>
         <div className='modal-body pt-12 p-5 h-[70vh] max-h-[70vh] overflow-y-scroll scroll-smooth flex flex-col'>
           <div className='flex flex-col gap-y-8'>
-            {ruleGroups.map(ruleGroup => <RuleGroup />)}
+            {ruleGroups.map(ruleGroup => <RuleGroup ruleGroupId={ruleGroup.id} removeRuleGroup={removeRuleGroup}/>)}
           </div>
           <div className='text-center text-white p-2 mt-6 rounded cursor-pointer add-rule bg-[#4F46E5] w-[180px]' onClick={e => addNewGroup()}>
             <FontAwesomeIcon icon={faPlus} />

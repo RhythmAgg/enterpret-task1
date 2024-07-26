@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react'
 import { faCaretDown, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import SelectList from './SelectList'
-import { RuleElement, RuleProps } from './types'
+import { RuleElement, RuleProps } from '../types'
 
 const fieldList = [
     'Theme',

@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { FC, useState, useEffect } from 'react'
 import Rule from './Rule'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons'
 import {v4 as uuid} from 'uuid'
-import { RuleElement } from './types'
+import { RuleElement, RuleGroupProps } from '../types'
 
-const RuleGroup = () => {
+const RuleGroup: FC<RuleGroupProps> = ({ruleGroupId, removeRuleGroup}) => {
   const [conjunction, setConjunction] = useState(0)
   const [rules, setRules] = useState<RuleElement[]>([])
 
@@ -39,11 +39,18 @@ const RuleGroup = () => {
         <div className='flex gap-y-4 flex-col'>
             {rules.map((rule) => <Rule ruleId={rule.id} deleteRule={removeRule} rules={rules} setRules={setRules}/>)}
         </div>
-
-        <div className='text-center p-2 mt-3 rounded cursor-pointer add-rule bg-[#4F46E5] w-[100px]' onClick={e => addRule()}>
-            <FontAwesomeIcon icon={faPlus} />
-            <span>Add filter</span>
+        <div className='flex flex-row justify-between items-center'>
+          <div className='text-center p-2 mt-3 rounded cursor-pointer add-rule bg-[#4F46E5] w-[100px]' onClick={e => addRule()}>
+              <FontAwesomeIcon icon={faPlus} />
+              <span>Add filter</span>
+          </div>
+          <div className='text-center p-2 mt-3 rounded cursor-pointer remove-rule-group bg-[#6D7175]' onClick={e => removeRuleGroup(ruleGroupId)}>
+            <FontAwesomeIcon icon={faTrash} />
+            <span className='ms-1'>Remove group</span>
         </div>
+
+        </div>
+        
     </div>
   )
 }

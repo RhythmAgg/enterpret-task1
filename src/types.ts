@@ -7,6 +7,10 @@ export type RuleGroupElement = {
     conjunction: 'AND' | 'OR';
     not: boolean;
 }
+export type RuleGroupProps = {
+    ruleGroupId: string;
+    removeRuleGroup: (ruleGroupId: string) => void;
+}
 export type RuleProps = {
     ruleId: string;
     deleteRule: any;

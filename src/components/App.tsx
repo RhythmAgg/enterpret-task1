@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Modal from './Modal';
-import './App.css';
+import '../styles/App.css';
 
 const App: React.FC = () => {
   const [showModal, setShowModal] = useState(false);

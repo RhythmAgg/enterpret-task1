@@ -1,6 +1,6 @@
 import React from 'react'
 import { FC } from 'react'
-import { SelectListProps } from './types'
+import { SelectListProps } from '../types'
 
 
 const SelectList: FC<SelectListProps> = ({list, show, setShow, update, updateKey}) => {
