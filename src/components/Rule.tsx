@@ -34,7 +34,7 @@ const Rule: FC<RuleProps> = ({ruleId, deleteRule, rules, setRules}) => {
     <div id={ruleId} className='rule flex flex-row gap-x-4'>
         <div className='text-white field flex flex-col w-[30%]'>
             <span className='m-1'>Field</span>
-            <div className='relative field-select bg-[#FFFFFF1A] border border-[#404348] rounded p-2 flex flex-row justify-between cursor-pointer items-center' onClick={e => setField(1-field)}>
+            <div className={`relative field-select bg-[${rule?.field?'#FFFFFF0D':'#FFFFFF1A'}] border border-[#404348] rounded p-2 flex flex-row justify-between cursor-pointer items-center`} onClick={e => setField(1-field)}>
                 {rule?.field != null
                     ?<span className='text-white'>{rule.field}</span>
                     :<span className='text-[#FFFFFF80]'>Select field</span>
@@ -45,7 +45,7 @@ const Rule: FC<RuleProps> = ({ruleId, deleteRule, rules, setRules}) => {
         </div>
         <div className='text-white field flex flex-col w-[30%]'>
             <span className='m-1'>Condition</span>
-            <div className='relative condition-select bg-[#FFFFFF1A] border border-[#404348] rounded p-2 flex flex-row justify-between cursor-pointer items-center' onClick={e => setCondition(1-condition)}>
+            <div className={`relative condition-select bg-[${rule?.condition?'#FFFFFF0D':'#FFFFFF1A'}] border border-[#404348] rounded p-2 flex flex-row justify-between cursor-pointer items-center`} onClick={e => setCondition(1-condition)}>
                 {rule?.condition != null
                     ?<span className='text-white'>{rule.condition}</span>
                     :<span className='text-[#FFFFFF80]'>Select condition</span>
@@ -56,7 +56,7 @@ const Rule: FC<RuleProps> = ({ruleId, deleteRule, rules, setRules}) => {
         </div>
         <div className='text-white field flex flex-col w-[30%]'>
             <span className='m-1'>Criteria</span>
-            <div className='relative criteria-select bg-[#FFFFFF1A] border border-[#404348] rounded p-2 flex flex-row justify-between cursor-pointer items-center' onClick={e => setCriteria(1-criteria)}>
+            <div className={`relative criteria-select bg-[${rule?.value?'#FFFFFF0D':'#FFFFFF1A'}] border border-[#404348] rounded p-2 flex flex-row justify-between cursor-pointer items-center`} onClick={e => setCriteria(1-criteria)}>
                 {rule?.value != null
                     ?<span className='text-white'>{rule.value}</span>
                     :<span className='text-[#FFFFFF80]'>Select criteria</span>

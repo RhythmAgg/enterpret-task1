@@ -3,14 +3,45 @@ import Rule from './Rule'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons'
 import {v4 as uuid} from 'uuid'
-import { RuleElement, RuleGroupProps } from '../types'
+import { RuleElement, RuleGroupProps, RuleGroupObject } from '../types'
 
-const RuleGroup: FC<RuleGroupProps> = ({ruleGroupId, removeRuleGroup}) => {
+const RuleGroup: FC<RuleGroupProps> = ({ruleGroupId, removeRuleGroup, queryObjects, setQueryObjects}) => {
   const [conjunction, setConjunction] = useState(0)
   const [rules, setRules] = useState<RuleElement[]>([])
+  const [ruleObject, setRuleObject] = useState<RuleGroupObject>({})
+
+  useEffect(() => {
+    const children = rules.filter(rule => rule?.field && rule?.condition && rule?.value)
+
+    const updatedRuleGroup: RuleGroupObject = {
+      id: ruleGroupId,
+      children: children,
+      conjunction: conjunction == 0?'AND':'OR',
+      not: false
+    }
+    setRuleObject(updatedRuleGroup)
+  }, [conjunction, rules])
+
+  useEffect(() => {
+    if(ruleObject.id) {
+
+      const index = queryObjects.findIndex(obj => obj.id == ruleGroupId)
+      if(index == -1)
+      {
+        setQueryObjects([...queryObjects, ruleObject])
+      }else {
+        setQueryObjects(queryObjects.map(obj => {
+          if(obj.id != ruleGroupId) {
+            return obj
+          }else{
+            return ruleObject
+          }
+        }))
+      } 
+    }
+  },[ruleObject])
 
   const removeRule = (ruleId: string) => {
-    console.log(ruleId, rules.findIndex(ele => ele.id == ruleId))
     setRules(rules.filter(ele => ele.id != ruleId))
   }
 

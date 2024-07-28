@@ -10,6 +10,8 @@ export type RuleGroupElement = {
 export type RuleGroupProps = {
     ruleGroupId: string;
     removeRuleGroup: (ruleGroupId: string) => void;
+    queryObjects: RuleGroupObject[];
+    setQueryObjects: React.Dispatch<React.SetStateAction<RuleGroupObject[]>>;
 }
 export type RuleProps = {
     ruleId: string;
@@ -30,4 +32,11 @@ export type SelectListProps = {
     setShow: React.Dispatch<React.SetStateAction<number>>;
     update: (newVal: any, updateKey: number) => void;
     updateKey: number;
+}
+
+export type RuleGroupObject = {
+    children?: (RuleGroupObject | RuleElement)[];
+    conjunction?: 'AND' | 'OR';
+    not?: boolean;
+    id?: string;
 }
