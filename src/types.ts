@@ -12,12 +12,16 @@ export type RuleGroupProps = {
     removeRuleGroup: (ruleGroupId: string) => void;
     queryObjects: RuleGroupObject[];
     setQueryObjects: React.Dispatch<React.SetStateAction<RuleGroupObject[]>>;
+    fields: any[];
+    conditions: any[]
 }
 export type RuleProps = {
     ruleId: string;
     deleteRule: any;
     rules?: any;
-    setRules: any
+    setRules: any;
+    fields: any[];
+    conditions: any[]
 }
 
 export type RuleElement = {

@@ -10,7 +10,7 @@ const fieldList = [
     'field3'
 ]
 
-const Rule: FC<RuleProps> = ({ruleId, deleteRule, rules, setRules}) => {
+const Rule: FC<RuleProps> = ({ruleId, deleteRule, rules, setRules, fields, conditions}) => {
   const [field, setField] = useState(0)
   const [condition, setCondition] = useState(0)
   const [criteria, setCriteria] = useState(0)
@@ -40,7 +40,7 @@ const Rule: FC<RuleProps> = ({ruleId, deleteRule, rules, setRules}) => {
                     :<span className='text-[#FFFFFF80]'>Select field</span>
                 }
                 <FontAwesomeIcon icon={faCaretDown} />
-                <SelectList list={fieldList} show = {field} setShow = {setField} update = {updateRule} updateKey={0} />
+                <SelectList list={fields.map(fieldObj => fieldObj.field)} show = {field} setShow = {setField} update = {updateRule} updateKey={0} />
             </div>
         </div>
         <div className='text-white field flex flex-col w-[30%]'>
@@ -51,7 +51,7 @@ const Rule: FC<RuleProps> = ({ruleId, deleteRule, rules, setRules}) => {
                     :<span className='text-[#FFFFFF80]'>Select condition</span>
                 }
                 <FontAwesomeIcon icon={faCaretDown} />
-                <SelectList list={fieldList} show = {condition} setShow = {setCondition} update = {updateRule} updateKey={1}/>
+                <SelectList list={conditions.map(conditionObj => conditionObj.condition)} show = {condition} setShow = {setCondition} update = {updateRule} updateKey={1}/>
             </div>
         </div>
         <div className='text-white field flex flex-col w-[30%]'>

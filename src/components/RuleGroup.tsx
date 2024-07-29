@@ -5,7 +5,7 @@ import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons'
 import {v4 as uuid} from 'uuid'
 import { RuleElement, RuleGroupProps, RuleGroupObject } from '../types'
 
-const RuleGroup: FC<RuleGroupProps> = ({ruleGroupId, removeRuleGroup, queryObjects, setQueryObjects}) => {
+const RuleGroup: FC<RuleGroupProps> = ({ruleGroupId, removeRuleGroup, queryObjects, setQueryObjects, fields, conditions}) => {
   const [conjunction, setConjunction] = useState(0)
   const [rules, setRules] = useState<RuleElement[]>([])
   const [ruleObject, setRuleObject] = useState<RuleGroupObject>({})
@@ -68,7 +68,7 @@ const RuleGroup: FC<RuleGroupProps> = ({ruleGroupId, removeRuleGroup, queryObjec
             <div className={`text-center conjuntion-or w-1/2 p-1 bg-${conjunction == 1?'modalHeader':'[#282B30]'}`}>OR</div>
         </div>
         <div className='flex gap-y-4 flex-col'>
-            {rules.map((rule) => <Rule ruleId={rule.id} deleteRule={removeRule} rules={rules} setRules={setRules}/>)}
+            {rules.map((rule) => <Rule ruleId={rule.id} deleteRule={removeRule} rules={rules} setRules={setRules} fields = {fields} conditions = {conditions} />)}
         </div>
         <div className='flex flex-row justify-between items-center'>
           <div className='text-center p-2 mt-3 rounded cursor-pointer add-rule bg-[#4F46E5] w-[100px]' onClick={e => addRule()}>

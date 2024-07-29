@@ -1,0 +1,66 @@
+{
+    "fields": [
+        {
+            "field": "Theme",
+            "value": "string"
+        },
+        {
+            "field": "Sub-theme",
+            "value": "string"
+        },
+        {
+            "field": "Reason",
+            "value": "string"
+        },
+        {
+            "field": "Language",
+            "value": "string"
+        },
+        {
+            "field": "Source",
+            "value": "string"
+        },
+        {
+            "field": "Rating",
+            "value": "number"
+        },
+        {
+            "field": "Time Period",
+            "value": "string"
+        },
+        {
+            "field": "Customer ID",
+            "value": "string"
+        }
+    ],
+    "conditions": [
+        {
+            "condition": "Equals",
+            "symbol": "=="
+        },
+        {
+            "condition": "Does not equal",
+            "symbol": "!="
+        },
+        {
+            "condition": "Like",
+            "symbol": "~"
+        },
+        {
+            "condition": "Not like",
+            "symbol": "!~"
+        },
+        {
+            "condition": "Is Empty",
+            "symbol": "Is Empty"
+        },
+        {
+            "condition": "Is",
+            "symbol": "Is"
+        },
+        {
+            "condition": "Is not",
+            "symbol": "Is not"
+        }
+    ]
+}
