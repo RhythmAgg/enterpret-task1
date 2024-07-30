@@ -2,11 +2,15 @@
     "fields": [
         {
             "field": "Theme",
-            "value": "string"
+            "value": "boolean"
         },
         {
             "field": "Sub-theme",
-            "value": "string"
+            "value": "list",
+            "list": [
+                "Feedback",
+                "Review"
+            ]
         },
         {
             "field": "Reason",

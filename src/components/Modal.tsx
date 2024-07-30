@@ -57,10 +57,6 @@ const Modal: FC<ModalProps> = ({ show, onClose }) => {
 
   }, [queryObjects])
 
-  useEffect(() => {
-    console.log(queryObjects)
-  }, [queryObjects])
-
   const removeRuleGroup = (ruleGroupId: string) => {
     setRuleGroups(ruleGroups.filter(ele => ele.id != ruleGroupId))
     setQueryObjects(queryObjects.filter(ele => ele.id != ruleGroupId))
@@ -106,8 +102,7 @@ const Modal: FC<ModalProps> = ({ show, onClose }) => {
                   :
                   (
                     <div className='bg-[#4338CA] p-2 overflow-x-scroll text-white border border-[#FFFFFF00] rounded'>
-                      <span className='font-bold me-1'>Query:</span>
-                      <span>{queryString}</span>
+                      <span className='text-nowrap'><span className='font-bold me-1'>Query:</span>{queryString}</span>
 
                     </div>
                   )
