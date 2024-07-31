@@ -76,11 +76,11 @@ const Rule: FC<RuleProps> = ({ruleId, deleteRule, rules, setRules, fields, condi
             <span className='m-1'>Value</span>
             {
                 rule?.field == null || fields[fieldIndex].value == 'string'
-                ?<input type='string' className={`criteria-select placeholder-[#FFFFFF80] focus-within:border-blue-400 bg-[${rule?.value?'#FFFFFF0D':'#FFFFFF1A'}] border border-[#404348] rounded p-2 flex flex-row justify-between cursor-pointer items-center`} placeholder='Field Value' value = {rule?.value == null?'':rule?.value} onChange={e => changeValue(e)} />
+                ?<input type='string' className={`criteria-select placeholder-[#FFFFFF80] focus-within:border-blue-400 bg-[${rule?.value?'#282B30':'#FFFFFF1A'}] border border-[#404348] rounded p-2 flex flex-row justify-between cursor-pointer items-center`} placeholder='Field Value' value = {rule?.value == null?'':rule?.value} onChange={e => changeValue(e)} />
                 :fields[fieldIndex].value == 'number'
-                ?<input type = 'number' className={`criteria-select placeholder-[#FFFFFF80] focus-within:border-blue-400 bg-[${rule?.value?'#FFFFFF0D':'#FFFFFF1A'}] border border-[#404348] rounded p-2 flex flex-row justify-between cursor-pointer items-center`} placeholder='Field Value' value = {rule?.value == null?'':rule?.value} onChange={e => changeValue(e)} />
+                ?<input type = 'number' className={`criteria-select placeholder-[#FFFFFF80] focus-within:border-blue-400 bg-[${rule?.value?'#282B30':'#FFFFFF1A'}] border border-[#404348] rounded p-2 flex flex-row justify-between cursor-pointer items-center`} placeholder='Field Value' value = {rule?.value == null?'':rule?.value} onChange={e => changeValue(e)} />
                 :fields[fieldIndex].value == 'boolean'
-                ?<div className={`relative criteria-select bg-[${rule?.value?'#FFFFFF0D':'#FFFFFF1A'}] border border-[#404348] rounded p-2 flex flex-row justify-between cursor-pointer items-center`} onClick={e => setCriteria(1-criteria)}>
+                ?<div className={`relative criteria-select bg-[${rule?.value?'#282B30':'#FFFFFF1A'}] border border-[#404348] rounded p-2 flex flex-row justify-between cursor-pointer items-center`} onClick={e => setCriteria(1-criteria)}>
                     {rule?.value != null
                         ?<span className='text-white'>{rule.value}</span>
                         :<span className='text-[#FFFFFF80]'>Select true/false</span>
@@ -88,7 +88,7 @@ const Rule: FC<RuleProps> = ({ruleId, deleteRule, rules, setRules, fields, condi
                     <FontAwesomeIcon icon={faCaretDown} />
                     <SelectList list={fieldBooleanList} show = {criteria} setShow = {setCriteria} update = {updateRule} updateKey={2}/>
                 </div>
-                :<div className={`relative criteria-select bg-[${rule?.value?'#FFFFFF0D':'#FFFFFF1A'}] border border-[#404348] rounded p-2 flex flex-row justify-between cursor-pointer items-center`} onClick={e => setCriteria(1-criteria)}>
+                :<div className={`relative criteria-select bg-[${rule?.value?'#282B30':'#FFFFFF1A'}] border border-[#404348] rounded p-2 flex flex-row justify-between cursor-pointer items-center`} onClick={e => setCriteria(1-criteria)}>
                 {rule?.value != null
                     ?<span className='text-white'>{rule.value}</span>
                     :<span className='text-[#FFFFFF80]'>Select value</span>

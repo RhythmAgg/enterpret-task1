@@ -2,7 +2,7 @@ import React, { FC, useState, useEffect } from 'react';
 import CloseButton from './CloseButton';
 import RuleGroup from './RuleGroup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faL, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faL, faPlus, faClipboard, faDownload } from '@fortawesome/free-solid-svg-icons';
 import {v4 as uuid} from 'uuid'
 import { ModalProps, RuleElement, RuleGroupElement, RuleGroupObject } from '../types';
 
@@ -80,6 +80,51 @@ const Modal: FC<ModalProps> = ({ show, onClose }) => {
     return null;
   }
 
+  const copyQueryString = () => {
+    navigator.clipboard.writeText(queryString);
+    const tip: any = document.querySelector(`.tooltip-clip`)
+    tip.innerHTML = 'Copied !'
+  }
+
+  const downloadQuery = () => {
+    let Obj: {
+      query: string;
+      query_object: any[];
+    } = {
+      query: queryString,
+      query_object: []
+    }
+    queryObjects.forEach((queryObject: any) => {
+      if(queryObject.children?.length > 0)
+      {
+        Obj.query_object.push(queryObject)
+      }
+    })
+    let element = document.createElement('a');
+    element.setAttribute('href',
+        'data:text/json;charset=utf-8, '
+        + encodeURIComponent(JSON.stringify(Obj)));
+    element.setAttribute('download', 'query.json');
+    document.body.appendChild(element);
+    element.click();
+
+    document.body.removeChild(element);
+  }
+
+  const showToolTip = (tooltip: string) => {
+    const tip: any = document.querySelector(`.tooltip-${tooltip}`)
+    tip.style.display = 'block'
+  }
+
+  const hideToolTip = (tooltip: string) => {
+    const tip: any = document.querySelector(`.tooltip-${tooltip}`)
+    tip.style.display = 'none'
+    if(tooltip == 'clip')
+      tip.innerHTML = 'Copy to Clipboard'
+    else
+      tip.innerHTML = 'Download query'
+  }
+
   return (
     <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50" >
       <div className="bg-modalBG rounded-lg shadow-lg max-w-[60vw] w-full" >
@@ -101,9 +146,22 @@ const Modal: FC<ModalProps> = ({ show, onClose }) => {
                   ?<span style={{color: '#A5B4FC'}}>The query you build will be saved in your active view</span>
                   :
                   (
-                    <div className='bg-[#4338CA] p-2 overflow-x-scroll text-white border border-[#FFFFFF00] rounded'>
-                      <span className='text-nowrap'><span className='font-bold me-1'>Query:</span>{queryString}</span>
-
+                    <div className='flex flex-row justify-between gap-x-4'>
+                      <div className='bg-[#4338CA] p-2 overflow-x-scroll text-white border border-[#FFFFFF00] rounded flex-grow'>
+                        <span className='text-nowrap'><span className='font-bold me-1'>Query:</span>{queryString}</span>
+                      </div>
+                      <div className='relative text-white cursor-pointer bg-[#4338CA] p-2 border border-[#FFFFFF00] rounded' onClick={e => copyQueryString()} onMouseOver={e => showToolTip('clip')} onMouseOut={e => hideToolTip('clip')}>
+                        <FontAwesomeIcon icon={faClipboard} />
+                        <div className="hidden tooltip-clip text-nowrap right-0 translate-x-1/2 -bottom-1 translate-y-full absolute z-50 whitespace-normal rounded-lg bg-black py-1.5 px-3 font-sans text-sm font-normal text-white focus:outline-none">
+                          Copy to Clipboard
+                        </div>
+                      </div>
+                      <div className='relative text-white cursor-pointer bg-[#4338CA] p-2 border border-[#FFFFFF00] rounded' onClick={e => downloadQuery()} onMouseOver={e => showToolTip('download')} onMouseOut={e => hideToolTip('download')}>
+                        <FontAwesomeIcon icon={faDownload} />
+                        <div className="hidden tooltip-download text-nowrap right-0 translate-x-1/2 -bottom-1 translate-y-full absolute z-50 whitespace-normal rounded-lg bg-black py-1.5 px-3 font-sans text-sm font-normal text-white focus:outline-none">
+                          Download query
+                        </div>
+                      </div>
                     </div>
                   )
                   

@@ -63,9 +63,15 @@ const RuleGroup: FC<RuleGroupProps> = ({ruleGroupId, removeRuleGroup, queryObjec
   }, [rules])
   return (
     <div className='text-white rule-group bg-[#282B30] rounded border border-[#404348] p-3'>
-        <div className='conjunction mb-3 flex w-[100px] flex cursor-pointer rounded border border-[#404348]' onClick={e => setConjunction(1 - conjunction)}>
-            <div className={`text-center conjuntion-and w-1/2 p-1 bg-${conjunction == 0?'modalHeader':'[#282B30]'}`}>AND</div>
-            <div className={`text-center conjuntion-or w-1/2 p-1 bg-${conjunction == 1?'modalHeader':'[#282B30]'}`}>OR</div>
+        <div className='flex flex-row justify-between items-center'>
+          <div className='conjunction mb-3 flex w-[100px] flex cursor-pointer rounded border border-[#404348]' onClick={e => setConjunction(1 - conjunction)}>
+              <div className={`text-center conjuntion-and w-1/2 p-1 bg-${conjunction == 0?'modalHeader':'[#282B30]'}`}>AND</div>
+              <div className={`text-center conjuntion-or w-1/2 p-1 bg-${conjunction == 1?'modalHeader':'[#282B30]'}`}>OR</div>
+          </div>
+          <div className='not-check flex flex-nowrap items-center gap-x-1'>
+            <input type = 'checkbox' className={`criteria-select placeholder-[#FFFFFF80] focus-within:border-blue-400 bg-[${ruleObject?.not?'#FFFFFF0D':'#FFFFFF1A'}] border border-[#404348] rounded p-2 flex flex-row justify-between cursor-pointer items-center`} checked={ruleObject?.not} onChange={e => setRuleObject({...ruleObject, not: !ruleObject?.not})} />
+            <span className='text-white self-center'>NOT</span>
+          </div>
         </div>
         <div className='flex gap-y-4 flex-col'>
             {rules.map((rule) => <Rule ruleId={rule.id} deleteRule={removeRule} rules={rules} setRules={setRules} fields = {fields} conditions = {conditions} />)}
