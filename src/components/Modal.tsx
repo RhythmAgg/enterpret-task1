@@ -109,6 +109,9 @@ const Modal: FC<ModalProps> = ({ show, onClose }) => {
     element.click();
 
     document.body.removeChild(element);
+
+    const tip: any = document.querySelector(`.tooltip-download`)
+    tip.innerHTML = 'Downloaded !'
   }
 
   const showToolTip = (tooltip: string) => {
