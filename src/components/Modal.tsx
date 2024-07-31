@@ -187,7 +187,14 @@ const Modal: FC<ModalProps> = ({ show, onClose }) => {
             <span>Add new group filter</span>
           </div>
         </div>
-        
+        <div className='modal-footer flex flex-row justify-between p-3'>
+          <div className='back text-center text-white p-2 mt-6 rounded cursor-pointer bg-[#6D7175] w-[120px]'>
+            <span>Back</span>
+          </div>
+          <div className='Finish text-center text-white p-2 mt-6 rounded cursor-pointer bg-[#4F46E5] w-[120px]' onClick={e => onClose()}>
+            <span>Finish</span>
+          </div>
+        </div>
       </div>
     </div>
   );
