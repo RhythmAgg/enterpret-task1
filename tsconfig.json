@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-  ]
+, "src/QueryBuilderLibrary/CloseButton.tsx", "src/QueryBuilderLibrary/Modal.tsx", "src/QueryBuilderLibrary/Rule.tsx", "src/QueryBuilderLibrary/RuleGroup.tsx", "src/QueryBuilderLibrary/SelectList.tsx"  ]
 }

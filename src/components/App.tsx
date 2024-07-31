@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Modal from './Modal';
+import Modal from '../QueryBuilderLibrary/Modal';
 import '../styles/App.css';
 
 const App: React.FC = () => {
