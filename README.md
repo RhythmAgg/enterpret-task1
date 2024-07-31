@@ -1,46 +1,40 @@
-# Getting Started with Create React App
+# Frontend Assignment - Enterpret
+## Problem statement
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Build a dynamic querybuilder which can build complex query simply. Analytics platform can have a very varying access patterns, which might require complex queries. End user can't always write such queries - so querybuilder helps in building complex queries easily. 
 
-## Available Scripts
+Write it from the POV that you're writing a library which exposes the querybuilder and a way to get its output Rule in two formats - `string`, and `Rule object`.
 
-In the project directory, you can run:
+## Artifacts
+- [Figma link](https://www.figma.com/file/yyvm19dgrhD7F9Hzy6FK4e/Design-Assignment?node-id=0%3A1)
+- [Loom walkthrough](https://www.loom.com/share/51184650198b44909d4eda83e555b752)
+- Data model
+```
+export interface Rule {
+  field?: 'Theme' | 'Sub-theme' | 'Reason' | 'Language' | 'Source' | 'Rating' | 'Time Period' | 'Customer ID' 
+  condition?: 'Equals' | 'Does not equal' | 'Like' | 'Not like' | 'Is Empty' | 'Is' | 'Is not'
+  value?: string[]
+  type: 'rule'
+}
+export interface RuleGroup {
+  children: (RuleGroup | Rule)[]
+  conjunction: 'AND' | 'OR'
+  not: boolean
+  type: 'rule_group'
+}
+```
 
-### `npm start`
+## Code structure
+The querybuilder is build using react and typescript. It is exposed as a library that can be imported anywhere in our application and used by invoking it.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The `src` directory consists of the:
+- `components` which imports the the query builder library
+- `queryBuilderLibrary` which is the query builder to be used in our application. The main file is the `modal.tsx` file that exports the modal component.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+To test the application, run:
+```
+npm install
+npm run start
+```
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+This will start the application on the development server. The application reads data from  `data.json` which specifies the fields, conditions and the associated value types.
