@@ -2,9 +2,9 @@ import React, { FC, useState, useEffect } from 'react';
 import CloseButton from './CloseButton';
 import RuleGroup from './RuleGroup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faL, faPlus, faClipboard, faDownload } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faClipboard, faDownload } from '@fortawesome/free-solid-svg-icons';
 import {v4 as uuid} from 'uuid'
-import { ModalProps, RuleElement, RuleGroupElement, RuleGroupObject } from '../types';
+import { ModalProps, RuleGroupElement, RuleGroupObject } from '../types';
 
 
 const Modal: FC<ModalProps> = ({ show, onClose }) => {
@@ -32,10 +32,10 @@ const Modal: FC<ModalProps> = ({ show, onClose }) => {
 
   const ruleGroupToString = (ruleGroup: RuleGroupObject):string => {
     let ruleGroupString = ''
-    const conj = ruleGroup?.conjunction == 'AND'?"&&":"||"
+    const conj = ruleGroup?.conjunction === 'AND'?"&&":"||"
     const rules: string[] = []
     ruleGroup?.children?.forEach((child: any) => {
-      const conditionSymbol = conditions[conditions.findIndex((obj: any) => obj.condition == child?.condition)]?.symbol
+      const conditionSymbol = conditions[conditions.findIndex((obj: any) => obj.condition === child?.condition)]?.symbol
       rules.push(` "(${child?.field}) ${conditionSymbol} \\"${child?.value}\\"" `)
     })
     ruleGroupString = rules.join(conj)
@@ -58,8 +58,8 @@ const Modal: FC<ModalProps> = ({ show, onClose }) => {
   }, [queryObjects])
 
   const removeRuleGroup = (ruleGroupId: string) => {
-    setRuleGroups(ruleGroups.filter(ele => ele.id != ruleGroupId))
-    setQueryObjects(queryObjects.filter(ele => ele.id != ruleGroupId))
+    setRuleGroups(ruleGroups.filter(ele => ele.id !== ruleGroupId))
+    setQueryObjects(queryObjects.filter(ele => ele.id !== ruleGroupId))
   }
 
   const addNewGroup = () => {
